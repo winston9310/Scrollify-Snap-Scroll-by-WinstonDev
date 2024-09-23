@@ -16,46 +16,45 @@ function scrollify_snap_enqueue_scripts() {
     // Custom script to initialize Scrollify
     wp_add_inline_script('scrollify-js', '
         jQuery(document).ready(function($) {
-            // Detectar si existen secciones con la clase "snap"
-            var snapSections = $("[class*=\'snap\']"); // Busca clases que contengan "snap"
+           
+            var snapSections = $("[class*=\'snap\']"); // all "snap" classes
 
             // Filtrar solo las secciones visibles
             var visibleSections = snapSections.filter(function() {
-                return $(this).is(":visible"); // Filtra las secciones visibles
+                return $(this).is(":visible"); 
             });
 
-            if (visibleSections.length > 0 && $(window).width() > 768) { // Aplicar solo en pantallas mayores de 768px
-                // Inicializamos Scrollify solo si existen secciones visibles con la clase "snap"
+            if (visibleSections.length > 0 && $(window).width() > 768) { // apply wide 768px
+                
                 $.scrollify({
-                    section: visibleSections, // Pasar solo las secciones visibles
-                    scrollSpeed: 900, // Velocidad de scroll en milisegundos
-                    setHeights: false, // No ajustar el tamaño de las secciones
-                    scrollbars: true, // Mostrar scrollbars si son necesarias
-                    updateHash: false, // No actualizar el hash en la URL
-                    touchScroll: true, // Permitir scroll táctil en dispositivos móviles
+                    section: visibleSections,
+                    scrollSpeed: 900, // speed
+                    setHeights: false, 
+                    scrollbars: true, 
+                    updateHash: false, //do not update hash
+                    touchScroll: true,
                     before: function(index, sections) {
                         var currentSection = sections[index];
 
-                        // Verificar si la sección está visible antes de hacer scroll
+                        
                         if (!$(currentSection).is(":visible")) {
-                            return false; // Cancelar el scroll si la sección está oculta
+                            return false; 
                         }
 
-                        console.log("Scrolling to section:", index); // Log para depuración
+                        console.log("Scrolling to section:", index); 
                     },
                     after: function(index, sections) {
-                        console.log("Arrived at section:", index); // Log para depuración
+                        console.log("Arrived at section:", index); 
                     }
                 });
             } else {
-                // Si no hay secciones con la clase "snap" o estamos en móvil, desactiva el efecto de scrollify
                 console.log("No snap sections found or on a small screen, default scrolling enabled.");
             }
         });
     ');
 }
 
-// Añadir enlace de soporte en la página de plugins
+// support
 function scrollify_add_plugin_links($links, $file) {
     if ($file == plugin_basename(__FILE__)) {
         $support_link = '<a href="mailto:winstondev01@gmail.com">Contact Support</a>';
@@ -64,7 +63,7 @@ function scrollify_add_plugin_links($links, $file) {
     return $links;
 }
 
-// Hooks para activar el plugin
+// Hooks
 add_filter('plugin_row_meta', 'scrollify_add_plugin_links', 10, 2);
 add_action('wp_enqueue_scripts', 'scrollify_snap_enqueue_scripts');
 
