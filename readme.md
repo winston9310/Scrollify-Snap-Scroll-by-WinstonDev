@@ -12,7 +12,7 @@ This WordPress plugin enhances the scrolling experience by implementing **Scroll
 
 ## Requirements
 
-- WordPress 4.0 or higher
+- WordPress 5.0 or higher
 - jQuery (Scrollify relies on jQuery)
 - Elementor (optional but recommended)
 
