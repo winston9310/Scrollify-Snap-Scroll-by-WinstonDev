@@ -1,4 +1,4 @@
-# Scrollify Snap Scroll by WinstonDev
+# Scrollify Snap Scroll WP Plugin by WinstonDev
 
 This WordPress plugin enhances the scrolling experience by implementing **Scrollify** to add snap scrolling between sections. The plugin automatically applies smooth snap scrolling to any section that contains the word `snap` in its class name. 
 
